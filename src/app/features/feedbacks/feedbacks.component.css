@@ -1,0 +1,254 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+  color: #0f172a;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.feedback-hero {
+  position: relative;
+  padding: 4rem 0 5rem;
+  background: radial-gradient(circle, rgba(76, 110, 245, 0.18) 0%, transparent 60%),
+    linear-gradient(135deg, #0f172a 0%, #1e1b4b 70%, #312e81 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.3rem, 4vw, 3.3rem);
+  margin: 0.5rem 0 1rem;
+  font-weight: 800;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.subtitle {
+  max-width: 640px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border-radius: 999px;
+  padding: 0.85rem 1.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(120deg, #4f46e5, #7c3aed);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+}
+
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+.btn-outline:hover,
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn.small {
+  padding: 0.65rem 1.4rem;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: auto -30% -30% auto;
+  width: 45rem;
+  height: 45rem;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.6), transparent 60%);
+  filter: blur(10px);
+  opacity: 0.6;
+}
+
+.entities {
+  padding: 4rem 0 2rem;
+}
+
+.entities h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.cards-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.entity-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 1.8rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.entity-card header h3 {
+  margin: 0.4rem 0 0;
+  font-size: 1.3rem;
+}
+
+.entity-card ul {
+  margin: 0;
+  padding-left: 1rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  color: #475569;
+}
+
+.meta span {
+  background: rgba(15, 23, 42, 0.05);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.badge-feedback {
+  background: rgba(57, 122, 255, 0.2);
+}
+
+.badge-event {
+  background: rgba(16, 185, 129, 0.25);
+}
+
+.badge-user {
+  background: rgba(251, 191, 36, 0.25);
+}
+
+.insights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0 3rem;
+}
+
+.insight-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 1.8rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 45px rgba(15, 23, 42, 0.05);
+}
+
+.insight-card h4 {
+  margin-top: 0;
+}
+
+.insight-card ul,
+.insight-card ol {
+  color: #475569;
+  line-height: 1.8;
+}
+
+.insight-card.highlight {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(147, 51, 234, 0.08));
+}
+
+.cta {
+  padding-bottom: 2rem;
+}
+
+.cta-card {
+  background: linear-gradient(120deg, #312e81, #1d4ed8);
+  color: #fff;
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  box-shadow: 0 30px 70px rgba(30, 64, 175, 0.4);
+}
+
+.outlet-wrapper {
+  margin: 3rem auto 4rem;
+  background: #fff;
+  border-radius: 24px;
+  padding: 2rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.outlet-wrapper h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .cta-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stats {
+    flex-direction: column;
+  }
+
+  .summary-meta {
+    flex-direction: column;
+  }
+
+  .summary-meta div {
+    width: 100%;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+  }
+
+  .timeline-rating {
+    width: 100%;
+  }
+}
+

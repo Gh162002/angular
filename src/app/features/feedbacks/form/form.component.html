@@ -1,1 +1,111 @@
-<p>form works!</p>
+<div class="feedback-form-container" *ngIf="eventId">
+  <h2 class="title">
+    Commentaires ({{ feedbacks.length }}) — Événement #{{ eventId }}
+  </h2>
+
+  <div class="row g-4 mb-5">
+    <div class="col-12" *ngIf="!hasFeedbacks && !loading">
+      <div class="empty-state">
+        <div class="empty-icon">💬</div>
+        <p>Aucun commentaire pour le moment.<br>Soyez le premier à donner votre avis !</p>
+      </div>
+    </div>
+
+    <div class="col-12" *ngIf="loading">
+      <div class="skeleton" *ngFor="let placeholder of [1,2,3]"></div>
+    </div>
+
+    <div class="col-lg-8 col-12" *ngFor="let fb of feedbacks; trackBy: trackByFeedback">
+      <div class="card shadow-sm border-0 h-100 feedback-card">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-3 card-header">
+            <div class="user-meta">
+              <div class="avatar">U{{ fb.id_user }}</div>
+              <div>
+                <h6 class="mb-0 fw-bold">Utilisateur {{ fb.id_user }}</h6>
+                <small class="text-muted">{{ fb.date | date:'dd MMM yyyy à HH:mm' }}</small>
+              </div>
+            </div>
+
+            <div class="btn-group btn-group-sm" *ngIf="fb.id_user === currentUserId">
+              <button class="btn btn-outline-primary" (click)="startEdit(fb)">
+                Modifier
+              </button>
+              <button class="btn btn-outline-danger" (click)="deleteFeedback(fb.id)">
+                Supprimer
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-2 rating">
+            <span class="stars">
+              <ng-container *ngFor="let star of stars; let i = index">
+                <i [class]="star <= (fb.rate || 0) ? 'bi bi-star-fill' : 'bi bi-star'"></i>
+              </ng-container>
+            </span>
+            <span class="ms-2 text-muted small">{{ fb.rate }}/5</span>
+          </div>
+
+          <p class="text-dark mb-0 flex-grow-1">{{ fb.content }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow border-0">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">
+        <i class="bi bi-pencil-square me-2"></i>
+        {{ isEditing ? 'Modifier votre commentaire' : 'Laisser un commentaire' }}
+      </h5>
+    </div>
+    <div class="card-body">
+      <form #feedbackForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label class="form-label fw-bold">Votre note</label>
+          <div class="star-rating">
+            <span *ngFor="let star of stars"
+                  class="star"
+                  [class.filled]="star <= currentRate"
+                  (click)="setRate(star)">
+              ★
+            </span>
+            <span class="ms-3 fw-bold fs-5">{{ currentRate }} / 5</span>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="content" class="form-label fw-bold">Votre commentaire</label>
+          <textarea id="content"
+                    class="form-control"
+                    rows="5"
+                    [(ngModel)]="currentContent"
+                    name="content"
+                    placeholder="Partagez votre expérience..."
+                    required
+                    minlength="10"
+                    #content="ngModel"></textarea>
+          <div class="form-text text-danger" *ngIf="content.invalid && content.touched">
+            Minimum 10 caractères requis.
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 flex-wrap">
+          <button type="submit"
+                  class="btn btn-primary btn-lg px-5"
+                  [disabled]="feedbackForm.invalid || currentRate === 0 || loading">
+            <i class="bi bi-send me-2"></i>
+            {{ isEditing ? 'Mettre à jour' : 'Publier' }}
+          </button>
+
+          <button type="button"
+                  *ngIf="isEditing"
+                  class="btn btn-outline-secondary btn-lg"
+                  (click)="cancelEdit()">
+            Annuler
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -23,7 +23,7 @@ export class FeedbackService {
     return this.httpClient.get<Feedback[]>(this.urlBackend);
   }
 
-  public deleteFeedback(id:number){
+  public deleteFeedback(id:number | string){
     return this.httpClient.delete(this.urlBackend+id);
 
   }

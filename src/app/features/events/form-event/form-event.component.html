@@ -1,1 +1,76 @@
-<p>form-event works!</p>
+<section class="form-wrapper">
+  <header>
+    <p class="eyebrow">Créer un événement</p>
+    <h1>Ajoutez un nouvel événement à votre catalogue</h1>
+    <p class="subtitle">
+      Renseignez les informations principales, l’image et le quota de places pour activer la vente de tickets.
+    </p>
+  </header>
+
+  <form #eventForm="ngForm" (ngSubmit)="onSubmit(eventForm)" novalidate>
+    <div class="grid">
+      <div class="field">
+        <label for="title">Titre</label>
+        <input id="title" name="title" type="text" class="form-control"
+               [(ngModel)]="event.title" required minlength="3">
+        <small class="error" *ngIf="eventForm.submitted && !eventForm.controls['title']?.valid">
+          Le titre doit contenir au moins 3 caractères.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="location">Lieu</label>
+        <input id="location" name="location" type="text" class="form-control"
+               [(ngModel)]="event.location" required>
+      </div>
+
+      <div class="field">
+        <label for="date">Date</label>
+        <input id="date" name="date" type="date" class="form-control"
+               [(ngModel)]="event.date" required>
+      </div>
+
+      <div class="field">
+        <label for="price">Prix (DT)</label>
+        <input id="price" name="price" type="number" min="0" class="form-control"
+               [(ngModel)]="event.price" required>
+      </div>
+
+      <div class="field">
+        <label for="nbPlaces">Nombre de places</label>
+        <input id="nbPlaces" name="nbPlaces" type="number" min="0" class="form-control"
+               [(ngModel)]="event.nbPlaces" required>
+      </div>
+
+      <div class="field">
+        <label for="imageUrl">Image (URL)</label>
+        <input id="imageUrl" name="imageUrl" type="text" class="form-control"
+               [(ngModel)]="event.imageUrl" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="4" class="form-control"
+                [(ngModel)]="event.description" required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="organizerId">ID Organisateur</label>
+      <input id="organizerId" name="organizerId" type="number" min="0" class="form-control"
+             [(ngModel)]="event.organizerId" required>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Enregistrement...' : 'Ajouter l’événement' }}
+      </button>
+      <button class="btn btn-outline" type="reset" [disabled]="isSubmitting" (click)="eventForm.resetForm()">
+        Réinitialiser
+      </button>
+    </div>
+
+    <p class="status success" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="status error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+</section>

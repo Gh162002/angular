@@ -10,8 +10,8 @@ import {EventsService} from '../../../shared/data/events.service';
 export class CardEventComponent {
   constructor(private eventService: EventsService) {
   }
-  searchValue: string;
   @Input() e:Eventy;
+  @Input() searchValue: string | null = null;
   @Output() notificationLike:EventEmitter<Eventy>
     = new EventEmitter();
   nbrPlaceDecr(e:Eventy){

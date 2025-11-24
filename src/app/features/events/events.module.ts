@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {RouterModule} from '@angular/router';
 
 import { EventsRoutingModule } from './events-routing.module';
 import { EventsComponent } from './events.component';
@@ -24,6 +25,7 @@ import { FormEventComponent } from './form-event/form-event.component';
   imports: [
     CommonModule,
     EventsRoutingModule,
+    RouterModule,
     FormsModule,
     SharedModule
   ]
