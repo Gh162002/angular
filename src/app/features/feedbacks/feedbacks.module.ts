@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
 
-import { FeedbacksRoutingModule } from './feedbacks-routing.module';
 import { FeedbacksComponent } from './feedbacks.component';
-import { FormComponent } from './form/form.component';
+import {FormComponent} from './form/form.component';
 
+const routes: Routes = [
+  {
+    path: '',
+    component: FeedbacksComponent,
+    children: [
+      { path: 'event/:id', component: FormComponent }
+    ]
+  }
+];
 
 @NgModule({
   declarations: [
@@ -13,8 +21,7 @@ import { FormComponent } from './form/form.component';
   ],
   imports: [
     CommonModule,
-    FeedbacksRoutingModule,
-    FormComponent
+    RouterModule.forChild(routes)
   ]
 })
 export class FeedbacksModule { }
