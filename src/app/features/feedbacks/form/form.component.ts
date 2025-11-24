@@ -1,4 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {FeedbackService} from '../../../shared/data/feedback.service';
@@ -6,6 +8,8 @@ import {Feedback} from '../../../models/feedback';
 
 @Component({
   selector: 'app-form',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
